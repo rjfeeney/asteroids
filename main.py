@@ -1,5 +1,7 @@
 import pygame
 from constants import *
+from circleshape import *
+from player import *
 
 pygame.mixer.quit() #ensure the mixer doesn't initialize
 
@@ -11,6 +13,7 @@ def main():
         
         Clock = pygame.time.Clock()
         dt = 0
+        player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
         # Set a display variable before creating the window
         if not pygame.display.get_init():
@@ -25,6 +28,7 @@ def main():
                                 pygame.quit()
                                 return
                 screen.fill("black")
+                player.draw(screen)
                 pygame.display.flip()
                 dt = (Clock.tick(60) / 1000)
 
