@@ -1,12 +1,17 @@
 import pygame
 from constants import *
 
+pygame.mixer.quit() #ensure the mixer doesn't initialize
+
 def main():
         pygame.init()
         print("Starting asteroids!")
         print(f"Screen width: {SCREEN_WIDTH}")
         print(f"Screen height: {SCREEN_HEIGHT}")
         
+        Clock = pygame.time.Clock()
+        dt = 0
+
         # Set a display variable before creating the window
         if not pygame.display.get_init():
             pygame.display.init()
@@ -21,6 +26,7 @@ def main():
                                 return
                 screen.fill("black")
                 pygame.display.flip()
+                dt = (Clock.tick(60) / 1000)
 
 if __name__ == "__main__":
     main()
