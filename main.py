@@ -1,6 +1,8 @@
 import pygame
 from constants import *
 from circleshape import *
+from asteroids import Asteroid
+from asteroidfield import AsteroidField
 from player import *
 
 pygame.mixer.quit() #ensure the mixer doesn't initialize
@@ -15,8 +17,12 @@ def main():
         dt = 0
         updatable = pygame.sprite.Group()
         drawable = pygame.sprite.Group()
+        asteroids = pygame.sprite.Group()
+        Asteroid.containers = (asteroids, updatable, drawable)
+        AsteroidField.containers = (updatable)
         Player.containers = (updatable, drawable)
         player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+        asteroid_field = AsteroidField()
         # Set a display variable before creating the window
         if not pygame.display.get_init():
             pygame.display.init()
